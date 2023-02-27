@@ -16,7 +16,7 @@ public class seguir : MonoBehaviour
     private bool beingHandled = false;
 
     float speed = 0.35f;
-    float speedRun = 0.71f;
+    float speedRun = 1.79f;
 
     CharacterController controlador;
 
@@ -50,22 +50,31 @@ public class seguir : MonoBehaviour
 
 
 
-        float minDist = 0.5f;
-        float distance = Vector3.Distance(aTarget.position, transform.position);
+        float minDist = 0.52f;
+
+        Vector3 v1 = aTarget.position;
+        v1.y = 0;
+        Vector3 v2 = transform.position;
+        v2.y = 0;
+        float distance = Vector3.Distance(v1, v2);
         bool val = minDist > distance;
+
 
         
 
         if ( /*some case  */ beingHandled)
 
         {
-            if(distance > 3f)
+            if(distance > 0.3)
             {
                 Vector3 targectPos = new Vector3(aTarget.transform.position.x,
                                            transform.position.y,
                                            aTarget.transform.position.z);
                 transform.LookAt(targectPos);
+            }
 
+            if(distance > 2.5f)
+            {
 
                 transform.Translate(0.0f, 0.0f, speedRun * Time.deltaTime);
 
@@ -73,11 +82,6 @@ public class seguir : MonoBehaviour
 
             else if (minDist < distance)
             {
-                Vector3 targectPos = new Vector3(aTarget.transform.position.x,
-                                           transform.position.y,
-                                           aTarget.transform.position.z);
-                transform.LookAt(targectPos);
-
 
                 transform.Translate(0.0f, 0.0f, speed * Time.deltaTime);
 

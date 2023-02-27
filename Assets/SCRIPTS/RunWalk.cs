@@ -28,20 +28,25 @@ public class RunWalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float minDist = 0.5f;
-        float distance = Vector3.Distance(aTarget.position, transform.position);
+
+        float minDist = 0.52f;
+        Vector3 v1 = aTarget.position;
+        v1.y = 0;
+        Vector3 v2 = transform.position;
+        v2.y = 0;
+        float distance = Vector3.Distance(v1, v2);
 
         bool walk = anim.GetBool("Walk");
         bool run = anim.GetBool("Run 0");
         bool none = anim.GetBool("None");
 
-        if (distance> 3f)
+        if (distance> 2.5f)
         {
             anim.SetBool("Run 0", true);
             anim.SetBool("Walk", false);
             anim.SetBool("None", false);
         }
-        else if ( 3f >= distance && distance > minDist)
+        else if ( 2.5f >= distance && distance > minDist)
         {
             anim.SetBool("Run 0", false);
             anim.SetBool("Walk", true);
